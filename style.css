@@ -1,0 +1,22 @@
+#chatbot-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    background-color: #f9f9f9;
+}
+
+#chatbot-messages {
+    height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+#chatbot-input {
+    width: calc(100% - 60px);
+}
+
+#chatbot-send {
+    width: 50px;
+}
