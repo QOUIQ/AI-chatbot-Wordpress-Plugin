@@ -3,7 +3,7 @@
  * Plugin Name: Quick Workspace Chatbot
  * Description: A plugin to integrate Quick Workspace AI chatbot.
  * Version: 1.0
- * Author: Your Name
+ * Author: Ryan BenHassine
  */
 
 // Exit if accessed directly
