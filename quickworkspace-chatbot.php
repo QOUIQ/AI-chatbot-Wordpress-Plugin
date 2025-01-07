@@ -17,6 +17,7 @@ function qwc_add_admin_menu() {
 }
 
 add_action('admin_enqueue_scripts', 'qwc_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'qwc_enqueue_scripts');
 function qwc_enqueue_scripts() {
     wp_enqueue_style('qwc-style', plugin_dir_url(__FILE__) . 'style.css');
     wp_enqueue_script('qwc-script', plugin_dir_url(__FILE__) . 'admin.js', array('jquery'), null, true);
@@ -108,11 +109,24 @@ add_shortcode('quick_workspace_chatbot', 'qwc_chatbot_shortcode');
 function qwc_chatbot_shortcode() {
     ob_start();
     ?>
-    <div id="chatbot-container">
-        <h2>Chat with our AI</h2>
-        <div id="chatbot-messages"></div>
-        <input type="text" id="chatbot-input" placeholder="Type your message...">
-        <button id="chatbot-send">Send</button>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <div id="chat-icon" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 1000; background-color: black; border-radius: 50%; padding: 10px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-filled icon-tabler-message-2">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M8 9h8" />
+            <path d="M8 13h6" />
+            <path d="M9 18h-3a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-3l-3 3l-3 -3z" />
+        </svg>
+    </div>
+    <div id="chatbot-container" style="display: none; position: fixed; bottom: 100px; right: 20px; width: 400px; height: 400px; border: 1px solid #ccc; background-color: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1000; border-radius: 30px;">
+        <div style="padding: 10px; background-color: black; color: white; border-top-left-radius: 30px; border-top-right-radius: 30px; font-family: 'Roboto', sans-serif;">
+            AI Support
+        </div>
+        <div id="chatbot-messages" style="height: calc(100% - 80px); overflow-y: auto; padding: 10px; font-family: 'Roboto', sans-serif; font-size: 14px;"></div>
+        <div style="display: flex; padding: 10px; align-items: center;">
+            <input type="text" id="chatbot-input" placeholder="Type your message..." style="flex: 1; padding: 10px; border-radius: 20px; border: 1px solid #ccc;">
+            <button id="chatbot-send" style="margin-left: 10px; padding: 10px; border-radius: 20px; background-color: black; color: white; border: none;">Send</button>
+        </div>
     </div>
     <?php
     return ob_get_clean();
